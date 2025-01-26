@@ -21,11 +21,6 @@ body {
   min-height: 100vh;
 }
 
-.main {
-  height: 100vh;
-  overflow: hidden;
-}
-
 #tsparticles {
   z-index: 1;
 }
@@ -43,17 +38,4 @@ body {
 
 .no-bubble-image {
   cursor: default;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }
