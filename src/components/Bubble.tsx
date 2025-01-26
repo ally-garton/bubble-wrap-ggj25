@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useEffect } from 'react';
 
 import bubble from '../assets/bubble.png';
@@ -7,12 +8,16 @@ import popAudioFile from '../assets/ashton-pop.mp3';
 import rizzAudioFile from '../assets/jam-rizz.mp3';
 
 interface BubbleProps {
-    onBubbleClick: () => void;
+    onBubbleRizz: () => void;
+    onBubblePop: () => void;
+
+    imageSource: string;
+    imageClass: string;
 }
 
-export default function Bubble({ onBubbleClick }: BubbleProps) {
-    const [bubbleSource, setBubbleSource] = useState(bubble);
-    const [bubbleClass, setBubbleClass] = useState('bubble bubble-image');
+const Bubble: React.FC<BubbleProps> = React.memo(({ onBubbleRizz, onBubblePop, imageSource, imageClass }) => {
+    const [bubbleSource, setBubbleSource] = useState(imageSource);
+    const [bubbleClass, setBubbleClass] = useState(imageClass);
 
     const [popAudio] = useState(new Audio(popAudioFile));
     const [rizzAudio] = useState(new Audio(rizzAudioFile));
@@ -22,9 +27,10 @@ export default function Bubble({ onBubbleClick }: BubbleProps) {
 
         if (chanceOfRizz) {
             rizzAudio.play().catch((error) => console.error("Error! Audio could not be played.", error));
-            onBubbleClick();
+            onBubbleRizz();
         } else {
             popAudio.play().catch((error) => console.error("Error! Audio could not be played.", error));
+            onBubblePop();
         }
 
         setBubbleClass("bubble no-bubble-image");
@@ -47,4 +53,6 @@ export default function Bubble({ onBubbleClick }: BubbleProps) {
             <img className={bubbleClass} src={bubbleSource} onClick={bubbleClass.includes('no-bubble-image') ? noPop : bubblePop} />
         </>
     )
-}
+});
+
+export default Bubble;

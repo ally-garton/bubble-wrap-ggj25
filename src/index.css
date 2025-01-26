@@ -25,9 +25,18 @@ body {
   z-index: 1;
 }
 
+#bubbleCounter {
+  color: red;
+  font-size: 30px;
+  left: 90px;
+  position: fixed;
+  top: 50px;
+  z-index: 2;
+}
+
 .bubble {
-  height: 125px;
   position: relative;
+  height: 125px;
   width: 128px;
   z-index: 2;
 }
